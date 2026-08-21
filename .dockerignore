@@ -1,0 +1,51 @@
+# Dependencies
+node_modules/
+apps/web/node_modules/
+
+# Build artifacts
+.next/
+out/
+dist/
+coverage/
+
+# Environment (never bake into images)
+.env
+.env.local
+.env.*.local
+supabase/docker/.env
+
+# Docker
+Dockerfile
+*.Dockerfile
+.dockerignore
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# Supabase docker volumes (not needed for Next.js build)
+supabase/docker/
+
+# Tests
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+**/*.spec.tsx
+
+# Docs & misc
+docs/
+FACILIA.old/
+*.html
+*.pem

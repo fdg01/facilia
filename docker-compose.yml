@@ -1,0 +1,48 @@
+# FACILIA — Docker Compose (root)
+#
+# Brings up Supabase (self-hosted) + the Next.js web app in one command.
+#
+# Usage:
+#   docker compose --profile dev up -d        # start everything (with Studio)
+#   docker compose up -d                      # start without Studio
+#   docker compose down                       # stop
+#   docker compose logs -f web                # tail web logs
+#
+# See:
+#   - ADR-003: Supabase self-hosted Docker
+#   - ADR-004: Dominio y path prefix
+
+include:
+  - supabase/docker/docker-compose.yml
+
+services:
+  web:
+    container_name: facilia-web
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+      args:
+        NEXT_PUBLIC_SUPABASE_URL: ${NEXT_PUBLIC_SUPABASE_URL:-http://localhost:8000}
+        NEXT_PUBLIC_SUPABASE_ANON_KEY: ${NEXT_PUBLIC_SUPABASE_ANON_KEY}
+        NEXT_PUBLIC_BASE_PATH: ${NEXT_PUBLIC_BASE_PATH:-/facilia}
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+      auth:
+        condition: service_started
+      rest:
+        condition: service_started
+    ports:
+      - "${WEB_PORT:-3000}:3000"
+    environment:
+      NODE_ENV: production
+      # Server-side Supabase URL — uses internal Docker network alias
+      SUPABASE_URL: http://supabase-kong:8000
+      SUPABASE_SERVICE_ROLE_KEY: ${SUPABASE_SERVICE_ROLE_KEY}
+      # Client-side Supabase URL — must be reachable from the browser
+      NEXT_PUBLIC_SUPABASE_URL: ${NEXT_PUBLIC_SUPABASE_URL:-http://localhost:8000}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${NEXT_PUBLIC_SUPABASE_ANON_KEY}
+      NEXT_PUBLIC_BASE_PATH: ${NEXT_PUBLIC_BASE_PATH:-/facilia}
+    networks:
+      - default

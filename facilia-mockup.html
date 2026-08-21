@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FACILIA — Mockup de componentes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   FACILIA — Mockup de componentes
+   Marca: Navy #0B2A61 · Orange #D97400 · Blue #0169F5
+   Tipos: Poppins (display) · Liberation Sans / system (body)
+   Reproduce los componentes de /components y la landing de /app/page.tsx
+   ============================================================ */
+
+:root{
+  /* Paleta FACILIA (Manual de Marca v1.0) */
+  --navy:        #0B2A61;
+  --navy-50:     #EAF0FB;
+  --navy-100:    #CBD9F0;
+  --navy-300:    #5D7FB8;
+  --navy-700:    #081F49;
+  --navy-900:    #051531;
+
+  --orange:      #D97400;
+  --orange-50:   #FDF3E6;
+  --orange-100:  #FBE2C0;
+  --orange-300:  #EFA855;
+  --orange-700:  #A85900;
+
+  --blue:        #0169F5;
+  --blue-50:     #E6F0FE;
+  --blue-100:    #C0DBFD;
+  --blue-300:    #5A9EF9;
+  --blue-700:    #0150BD;
+
+  --ink:         #0B1220;
+  --paper:       #FBFBFA;
+  --white:       #FFFFFF;
+
+  --red-600:     #DC2626;
+  --red-400:     #F87171;
+
+  --font-display: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-body:    "Liberation Sans", Arial, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --shadow-soft: 0 8px 30px -12px rgba(11, 42, 97, 0.25);
+  --shadow-card: 0 2px 12px rgba(11, 42, 97, 0.08);
+
+  --radius-xl:  0.875rem;
+  --radius-2xl: 1.25rem;
+}
+
+[data-theme="dark"]{
+  --paper:#14161a; --white:#1a1d22; --ink:#e8eaee;
+  --navy-50:#1a2236; --navy-100:#2b3550;
+  --shadow-card: 0 2px 12px rgba(0,0,0,0.4);
+  --shadow-soft: 0 8px 30px -12px rgba(0,0,0,0.6);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--font-body); font-size:14px; line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:rgba(217,116,0,.20)}
+:focus-visible{outline:2px solid var(--blue); outline-offset:2px}
+
+h1,h2,h3,h4{font-family:var(--font-display); font-weight:700; color:var(--navy); margin:0}
+p{margin:0}
+a{color:inherit; text-decoration:none}
+img{display:block; max-width:100%}
+
+/* ---------- Layout del mockup ---------- */
+.wrap{max-width:1100px; margin:0 auto; padding:0 20px}
+.section{padding:48px 0; border-top:1px solid var(--navy-100)}
+.section:first-of-type{border-top:0}
+.section-head{margin-bottom:24px}
+.eyebrow{
+  font-size:11px; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--orange); font-weight:600; margin:0 0 6px;
+}
+.section-head h2{font-size:24px; margin-bottom:6px}
+.section-head p{color:var(--ink); opacity:.7; font-size:13px; max-width:70ch}
+.grid{display:grid; gap:20px}
+.grid-2{grid-template-columns:repeat(2,1fr)}
+.grid-3{grid-template-columns:repeat(3,1fr)}
+.grid-4{grid-template-columns:repeat(4,1fr)}
+@media (max-width:860px){
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+}
+.demo-row{display:flex; flex-wrap:wrap; gap:12px; align-items:center}
+.demo-row + .demo-row{margin-top:14px}
+.label-tag{
+  font-family:var(--font-display); font-size:10px; font-weight:600;
+  letter-spacing:.08em; text-transform:uppercase; color:var(--navy);
+  opacity:.5; margin-bottom:8px; display:block;
+}
+
+/* ============================================================
+   NAVBAR  (replica /components/Navbar.tsx)
+   ============================================================ */
+.navbar{
+  position:sticky; top:0; z-index:40;
+  background:rgba(251,251,250,.85);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(203,217,240,.5);
+}
+.navbar-inner{
+  max-width:1100px; margin:0 auto; padding:0 20px;
+  height:64px; display:flex; align-items:center; justify-content:space-between;
+}
+.brand{
+  font-family:var(--font-display); font-weight:700; font-size:22px;
+  color:var(--navy); letter-spacing:.046em; display:flex; align-items:center; gap:8px;
+}
+.brand .dot{width:8px; height:8px; background:var(--orange); border-radius:2px}
+.nav-links{display:flex; align-items:center; gap:32px; font-size:14px; color:rgba(11,42,97,.8)}
+.nav-links a{transition:color .2s}
+.nav-links a:hover{color:var(--orange)}
+.nav-cta{
+  background:var(--orange); color:#fff; padding:8px 20px;
+  border-radius:var(--radius-xl); font-weight:600;
+  box-shadow:var(--shadow-soft); transition:background .2s;
+}
+.nav-cta:hover{background:var(--orange-700)}
+.nav-mobile{display:none; gap:8px}
+.nav-mobile .ghost{
+  border:1px solid var(--navy-100); color:rgba(11,42,97,.7);
+  padding:8px 12px; border-radius:var(--radius-xl); font-size:13px; font-weight:600;
+}
+.nav-mobile .cta{
+  background:var(--orange); color:#fff; padding:8px 16px;
+  border-radius:var(--radius-xl); font-size:13px; font-weight:600;
+}
+@media (max-width:640px){
+  .nav-links{display:none}
+  .nav-mobile{display:flex}
+}
+
+/* ============================================================
+   HERO  (replica sección Hero de app/page.tsx)
+   ============================================================ */
+.hero{
+  position:relative; overflow:hidden;
+  background:linear-gradient(to bottom, rgba(234,240,251,.6), var(--paper));
+  padding:80px 0 0; text-align:center;
+}
+.hero-bg{
+  position:absolute; inset:0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(11,42,97,.10), transparent 60%),
+    radial-gradient(circle at 80% 20%, rgba(217,116,0,.08), transparent 55%);
+  pointer-events:none;
+}
+.hero-inner{position:relative; max-width:900px; margin:0 auto; padding:0 20px}
+.hero h1{
+  font-size:clamp(22px, 4vw, 38px); line-height:1.1; margin-bottom:24px;
+}
+.hero h1 .accent{color:var(--orange)}
+.hero p.lead{
+  max-width:680px; margin:0 auto 32px; font-size:16px;
+  color:rgba(11,18,32,.9);
+}
+.hero-cta{display:flex; gap:16px; justify-content:center; flex-wrap:wrap}
+.hero-thumbs{
+  display:flex; gap:12px; justify-content:center; margin-top:40px;
+  flex-wrap:wrap; padding-bottom:40px;
+}
+.thumb{
+  width:72px; height:72px; border-radius:var(--radius-xl);
+  border:1px solid var(--navy-100); box-shadow:var(--shadow-card);
+  background-size:cover; background-position:center;
+}
+
+/* ============================================================
+   BUTTON  (replica /components/Button.tsx)
+   ============================================================ */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
+  white-space:nowrap; font-family:var(--font-display); font-weight:600;
+  border-radius:var(--radius-xl); cursor:pointer; border:0;
+  transition:all .2s; user-select:none;
+}
+.btn:active{transform:scale(.98)}
+.btn:disabled{opacity:.5; cursor:not-allowed}
+.btn-sm{font-size:13px; padding:6px 12px}
+.btn-md{font-size:14px; padding:10px 20px}
+.btn-lg{font-size:16px; padding:14px 28px}
+.btn-primary{background:var(--orange); color:#fff; box-shadow:var(--shadow-soft)}
+.btn-primary:hover{background:var(--orange-700)}
+.btn-secondary{background:var(--navy); color:#fff}
+.btn-secondary:hover{background:var(--navy-700)}
+.btn-ghost{background:transparent; color:var(--navy); border:1px solid var(--navy-100)}
+.btn-ghost:hover{background:var(--navy-50)}
+.btn-danger{background:var(--red-600); color:#fff}
+.btn-danger:hover{background:#b91c1c}
+.btn-loading .spinner{
+  width:14px; height:14px; border-radius:50%;
+  border:2px solid rgba(255,255,255,.4); border-top-color:#fff;
+  animation:spin .7s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ============================================================
+   CARD  (replica /components/Card.tsx)
+   ============================================================ */
+.card{
+  background:var(--white); border:1px solid rgba(203,217,240,.6);
+  border-radius:var(--radius-2xl); box-shadow:var(--shadow-card);
+  padding:24px;
+}
+.card.hover:hover{box-shadow:var(--shadow-soft); transition:box-shadow .25s}
+
+/* ============================================================
+   FORM FIELDS  (replica Input / Select / Textarea)
+   Etiqueta DENTRO del campo: caption arriba, valor abajo.
+   ============================================================ */
+.field{
+  width:100%; background:var(--white); border:1px solid var(--navy-100);
+  border-radius:var(--radius-xl); padding:8px 14px;
+  transition:border-color .2s, box-shadow .2s;
+}
+.field:focus-within{
+  border-color:var(--blue);
+  box-shadow:0 0 0 2px rgba(1,105,245,.30);
+}
+.field-label{
+  display:block; font-size:10px; font-weight:600;
+  letter-spacing:.06em; text-transform:uppercase;
+  color:rgba(11,42,97,.5);
+}
+.field input, .field select, .field textarea{
+  width:100%; background:transparent; border:0; outline:0; padding:0;
+  font-family:var(--font-body); font-size:14px; color:var(--ink);
+  margin-top:2px; resize:none;
+}
+.field input::placeholder, .field textarea::placeholder{color:rgba(11,18,32,.3)}
+.field-error{border-color:var(--red-400)}
+.field-hint{margin-top:4px; font-size:12px; color:rgba(11,18,32,.5)}
+.field-err-text{margin-top:4px; font-size:12px; color:var(--red-600)}
+
+/* Input sin label */
+.input-bare{
+  width:100%; background:var(--white); border:1px solid var(--navy-100);
+  border-radius:var(--radius-xl); padding:10px 16px;
+  font-family:var(--font-body); font-size:14px; color:var(--ink);
+  transition:border-color .2s, box-shadow .2s;
+}
+.input-bare:focus{border-color:var(--blue); box-shadow:0 0 0 2px rgba(1,105,245,.30); outline:0}
+.input-bare::placeholder{color:rgba(11,18,32,.4)}
+
+/* ============================================================
+   MODAL  (replica /components/Modal.tsx)
+   ============================================================ */
+.modal-backdrop{
+  position:fixed; inset:0; z-index:50;
+  background:rgba(5,21,49,.5); backdrop-filter:blur(4px);
+  display:flex; align-items:center; justify-content:center; padding:16px;
+  animation:fadeIn .25s ease-out;
+}
+@keyframes fadeIn{from{opacity:0} to{opacity:1}}
+@keyframes fadeUp{from{opacity:0; transform:translateY(12px)} to{opacity:1; transform:translateY(0)}}
+.modal{
+  background:var(--white); border-radius:var(--radius-2xl);
+  box-shadow:var(--shadow-soft); max-width:480px; width:100%;
+  max-height:85vh; overflow-y:auto; animation:fadeUp .25s ease-out;
+}
+.modal-head{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px 24px; border-bottom:1px solid var(--navy-100);
+  position:sticky; top:0; background:var(--white);
+}
+.modal-head h3{font-size:16px; font-weight:600}
+.modal-close{
+  width:32px; height:32px; border:0; background:transparent;
+  color:rgba(11,18,32,.4); font-size:22px; line-height:1;
+  cursor:pointer; display:flex; align-items:center; justify-content:center;
+  transition:color .2s;
+}
+.modal-close:hover{color:var(--ink)}
+.modal-body{padding:24px}
+
+/* ============================================================
+   SERVICIOS  (replica sección Servicios de app/page.tsx)
+   ============================================================ */
+.serv-card{
+  position:relative; overflow:hidden; background:var(--white);
+  border:1px solid rgba(203,217,240,.6); border-radius:var(--radius-2xl);
+  box-shadow:var(--shadow-card); padding:24px;
+  transition:box-shadow .25s;
+}
+.serv-card:hover{box-shadow:var(--shadow-soft)}
+.serv-card .bg{
+  position:absolute; inset:0; opacity:.18;
+  background-size:cover; background-position:center;
+}
+.serv-card .veil{position:absolute; inset:0; background:rgba(255,255,255,.6)}
+.serv-card .content{position:relative}
+.serv-card h3{font-size:18px; font-weight:600; margin-bottom:8px}
+.serv-card p{font-size:13px; color:rgba(11,18,32,.8); margin-bottom:16px}
+.serv-list{list-style:none; padding:0; margin:0; border-top:1px solid var(--navy-100); padding-top:16px}
+.serv-list li{
+  font-size:13px; color:rgba(11,18,32,.9);
+  display:flex; align-items:center; gap:8px; margin-bottom:6px;
+}
+.serv-list li::before{
+  content:""; width:4px; height:4px; border-radius:50%;
+  background:var(--orange); flex:none;
+}
+
+/* ============================================================
+   RAZONES (chips) — replica sección "Por qué FACILIA"
+   ============================================================ */
+.chip{
+  display:inline-flex; align-items:center; gap:8px;
+  background:var(--white); border:1px solid var(--navy-100);
+  border-radius:999px; padding:10px 20px;
+  font-size:14px; font-weight:500; color:var(--navy);
+  box-shadow:var(--shadow-card);
+}
+.chip .check{color:var(--orange); font-weight:700}
+
+/* ============================================================
+   FOOTER  (replica /components/Footer.tsx)
+   ============================================================ */
+.footer{background:var(--navy); color:rgba(255,255,255,.8); margin-top:96px}
+.footer-inner{
+  max-width:1100px; margin:0 auto; padding:48px 20px;
+  display:flex; flex-wrap:wrap; justify-content:space-between; gap:32px;
+  align-items:flex-start;
+}
+.footer-brand{display:flex; align-items:center; gap:12px}
+.footer-brand .logo{
+  font-family:var(--font-display); font-weight:600; color:#fff; font-size:16px;
+}
+.footer-brand .sub{font-size:12px; color:rgba(255,255,255,.5)}
+.footer-info{font-size:14px; line-height:1.6}
+.footer-info .lines{letter-spacing:.05em}
+.footer-info .meta{color:rgba(255,255,255,.5); font-size:13px}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.1); padding:16px;
+  text-align:center; font-size:12px; color:rgba(255,255,255,.4);
+}
+.footer-bottom a{text-decoration:underline; text-underline-offset:2px}
+.footer-bottom a:hover{color:rgba(255,255,255,.7)}
+
+/* ---------- Utilidades del mockup ---------- */
+.swatch{
+  display:flex; align-items:center; gap:12px; padding:12px;
+  background:var(--white); border:1px solid var(--navy-100);
+  border-radius:var(--radius-xl);
+}
+.swatch i{width:40px; height:40px; border-radius:6px; flex:none; box-shadow:inset 0 0 0 1px rgba(128,128,128,.3)}
+.swatch b{font-family:var(--font-display); font-weight:600; font-size:13px; display:block}
+.swatch code{font-family:ui-monospace,Consolas,monospace; font-size:11px; color:var(--ink); opacity:.6}
+.swatch span{font-size:11px; color:var(--ink); opacity:.6; display:block}
+.type-sample{padding:16px; background:var(--white); border:1px solid var(--navy-100); border-radius:var(--radius-xl)}
+.type-sample .h{font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink); opacity:.5; font-weight:600; margin-bottom:8px}
+.type-display{font-family:var(--font-display); font-weight:500; font-size:22px; color:var(--navy)}
+.type-body{font-family:var(--font-body); font-size:14px; color:var(--ink)}
+
+/* Theme toggle */
+.theme-toggle{
+  position:fixed; bottom:20px; right:20px; z-index:60;
+  background:var(--navy); color:#fff; border:0; cursor:pointer;
+  padding:10px 14px; border-radius:999px; font-size:13px;
+  font-family:var(--font-display); font-weight:600;
+  box-shadow:var(--shadow-soft);
+}
+</style>
+</head>
+<body>
+
+<!-- ============== NAVBAR ============== -->
+<header class="navbar">
+  <div class="navbar-inner">
+    <a href="#" class="brand"><span class="dot"></span>FACILIA</a>
+    <nav class="nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#por-que">Por qué FACILIA</a>
+      <a href="#form">Ingreso / Registro</a>
+      <a href="#form" class="nav-cta">Cotizar ahora</a>
+    </nav>
+    <div class="nav-mobile">
+      <a href="#form" class="ghost">Ingreso</a>
+      <a href="#form" class="cta">Cotizar</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============== HERO (landing) ============== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <h1>
+      <span style="display:block">No vendemos productos. No vendemos horas.</span>
+      <span class="accent" style="display:block">Entregamos continuidad operativa.</span>
+    </h1>
+    <p class="lead">
+      FACILIA es el socio que asegura que las instalaciones de tu empresa funcionen de forma
+      eficiente, limpia y sin interrupciones. Integramos limpieza, mantenimiento y gestión de
+      recursos críticos bajo un mismo proveedor, con procesos estandarizados y foco en la
+      prevención.
+    </p>
+    <div class="hero-cta">
+      <button class="btn btn-primary btn-lg">Cotizar mi servicio →</button>
+      <button class="btn btn-ghost btn-lg">Ver servicios</button>
+    </div>
+    <div class="hero-thumbs">
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=200')"></div>
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1497366811353-678077f5cd1c?w=200')"></div>
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=200')"></div>
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=200')"></div>
+      <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1504328345606-49bcd35cd15c?w=200')"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== MOCKUP INDEX ============== -->
+<main class="wrap">
+
+  <!-- 1 · Identidad de marca -->
+  <section class="section" id="identidad">
+    <div class="section-head">
+      <p class="eyebrow">CORE Brand &amp; System · Ficha de marca</p>
+      <h2>1 · Identidad</h2>
+      <p>FACILIA — Facility Services by CORE. “No vendemos productos. No vendemos horas. Entregamos continuidad operativa.” Líneas: Clean · Care · Continuity.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="swatch"><i style="background:#0B2A61"></i><div><b>Navy</b><code>#0B2A61</code><span>Wordmark, títulos, fondos oscuros</span></div></div>
+      <div class="swatch"><i style="background:#D97400"></i><div><b>Orange</b><code>#D97400</code><span>Color distintivo · CTAs</span></div></div>
+      <div class="swatch"><i style="background:#0169F5"></i><div><b>Blue</b><code>#0169F5</code><span>Endoso, acentos, focus ring</span></div></div>
+    </div>
+    <div class="grid grid-2" style="margin-top:20px">
+      <div class="type-sample">
+        <div class="h">Display / Títulos</div>
+        <div class="type-display">Poppins Medium — FACILIA</div>
+      </div>
+      <div class="type-sample">
+        <div class="h">Body / UI</div>
+        <div class="type-body">Liberation Sans — cuerpo de interfaz y formularios.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · Buttons -->
+  <section class="section" id="buttons">
+    <div class="section-head">
+      <p class="eyebrow">Componente</p>
+      <h2>2 · Button</h2>
+      <p>Variantes <code>primary · secondary · ghost · danger</code> en tamaños <code>sm · md · lg</code>. Réplica de <code>components/Button.tsx</code>.</p>
+    </div>
+
+    <span class="label-tag">Variantes — md</span>
+    <div class="demo-row">
+      <button class="btn btn-primary btn-md">Primary</button>
+      <button class="btn btn-secondary btn-md">Secondary</button>
+      <button class="btn btn-ghost btn-md">Ghost</button>
+      <button class="btn btn-danger btn-md">Danger</button>
+    </div>
+
+    <span class="label-tag" style="margin-top:20px">Tamaños</span>
+    <div class="demo-row">
+      <button class="btn btn-primary btn-sm">Small</button>
+      <button class="btn btn-primary btn-md">Medium</button>
+      <button class="btn btn-primary btn-lg">Large</button>
+    </div>
+
+    <span class="label-tag" style="margin-top:20px">Estados</span>
+    <div class="demo-row">
+      <button class="btn btn-primary btn-md" disabled>Disabled</button>
+      <button class="btn btn-primary btn-md btn-loading"><span class="spinner"></span>Loading</button>
+      <button class="btn btn-primary btn-md">Cotizar mi servicio →</button>
+    </div>
+  </section>
+
+  <!-- 3 · Cards -->
+  <section class="section" id="cards">
+    <div class="section-head">
+      <p class="eyebrow">Componente</p>
+      <h2>3 · Card</h2>
+      <p>Superficie base: fondo blanco, borde navy-100, sombra card, radius 2xl. Réplica de <code>components/Card.tsx</code>.</p>
+    </div>
+    <div class="grid grid-3">
+      <div class="card hover">
+        <h3 style="font-size:16px; margin-bottom:8px">Card básica</h3>
+        <p style="font-size:13px; opacity:.8">Contenido libre. Padding 24px por defecto.</p>
+      </div>
+      <div class="card hover">
+        <h3 style="font-size:16px; margin-bottom:8px">Con métrica</h3>
+        <div style="font-family:var(--font-display); font-size:28px; font-weight:700; color:var(--orange)">128</div>
+        <p style="font-size:12px; opacity:.6">servicios activos</p>
+      </div>
+      <div class="card hover" style="background:var(--navy); color:#fff; border-color:var(--navy)">
+        <h3 style="font-size:16px; margin-bottom:8px; color:#fff">Card navy</h3>
+        <p style="font-size:13px; color:rgba(255,255,255,.7)">Para bloques de cierre o CTA.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · Form fields -->
+  <section class="section" id="form">
+    <div class="section-head">
+      <p class="eyebrow">Componentes</p>
+      <h2>4 · Input · Select · Textarea</h2>
+      <p>Etiqueta DENTRO del campo (caption arriba, valor abajo), foco con anillo blue/30. Réplica de <code>Input.tsx · Select.tsx · Textarea.tsx</code>.</p>
+    </div>
+
+    <div class="grid grid-2">
+      <div>
+        <span class="label-tag">Input con label</span>
+        <div class="field">
+          <label class="field-label" for="i1">Nombre del contacto</label>
+          <input id="i1" type="text" placeholder="Ej. Juan Pérez">
+        </div>
+        <p class="field-hint">Así aparece en la cotización.</p>
+      </div>
+
+      <div>
+        <span class="label-tag">Input numérico (alineado a derecha)</span>
+        <div class="field">
+          <label class="field-label" for="i2">Metros cuadrados</label>
+          <input id="i2" type="number" placeholder="0" style="text-align:right" value="180">
+        </div>
+      </div>
+
+      <div>
+        <span class="label-tag">Input con error</span>
+        <div class="field field-error">
+          <label class="field-label" for="i3">Email</label>
+          <input id="i3" type="email" value="juan@">
+        </div>
+        <p class="field-err-text">Ingresá un email válido.</p>
+      </div>
+
+      <div>
+        <span class="label-tag">Select con label</span>
+        <div class="field">
+          <label class="field-label" for="s1">Línea de servicio</label>
+          <select id="s1">
+            <option value="">Seleccionar…</option>
+            <option>FACILIA Clean</option>
+            <option>FACILIA Care</option>
+            <option>FACILIA Continuity</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <span class="label-tag">Input sin label (bare)</span>
+        <input class="input-bare" type="text" placeholder="Buscar cliente…">
+      </div>
+
+      <div>
+        <span class="label-tag">Select sin label (bare)</span>
+        <select class="input-bare">
+          <option value="">Frecuencia…</option>
+          <option>Semanal</option>
+          <option>Quincenal</option>
+          <option>Mensual</option>
+        </select>
+      </div>
+
+      <div style="grid-column:1 / -1">
+        <span class="label-tag">Textarea con label</span>
+        <div class="field">
+          <label class="field-label" for="t1">Observaciones del servicio</label>
+          <textarea id="t1" rows="3" placeholder="Detalles del espacio, accesos, restricciones…"></textarea>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · Modal -->
+  <section class="section" id="modal">
+    <div class="section-head">
+      <p class="eyebrow">Componente</p>
+      <h2>5 · Modal</h2>
+      <p>Overlay con backdrop navy-900/50 + blur, cuerpo blanco radius 2xl, header sticky con cierre. Réplica de <code>components/Modal.tsx</code>.</p>
+    </div>
+    <div class="demo-row">
+      <button class="btn btn-primary btn-md" onclick="document.getElementById('m1').style.display='flex'">Abrir modal</button>
+      <button class="btn btn-secondary btn-md" onclick="document.getElementById('m2').style.display='flex'">Modal con formulario</button>
+    </div>
+  </section>
+
+  <!-- 6 · Servicios (landing) -->
+  <section class="section" id="servicios">
+    <div class="section-head" style="text-align:center">
+      <p class="eyebrow">La unidad de Facility Services de CORE</p>
+      <h2>Tres líneas, un solo estándar</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="serv-card">
+        <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1581578731548-cda46f23f14b?w=600')"></div>
+        <div class="veil"></div>
+        <div class="content">
+          <h3>🧴 FACILIA Clean</h3>
+          <p>Limpieza profesional con protocolos estandarizados que garantizan higiene y ambientes saludables en cada espacio.</p>
+          <ul class="serv-list">
+            <li>Protocolos estandarizados</li>
+            <li>Higiene y sanitización</li>
+            <li>Ambientes saludables</li>
+          </ul>
+        </div>
+      </div>
+      <div class="serv-card">
+        <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=600')"></div>
+        <div class="veil"></div>
+        <div class="content">
+          <h3>🛠️ FACILIA Care</h3>
+          <p>Mantenimiento preventivo y correctivo liviano que asegura la continuidad operativa de tus instalaciones.</p>
+          <ul class="serv-list">
+            <li>Mantenimiento preventivo</li>
+            <li>Mantenimiento correctivo</li>
+            <li>Continuidad de instalaciones</li>
+          </ul>
+        </div>
+      </div>
+      <div class="serv-card">
+        <div class="bg" style="background-image:url('https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=600')"></div>
+        <div class="veil"></div>
+        <div class="content">
+          <h3>🕐 FACILIA Continuity</h3>
+          <p>Gestión integral de los recursos críticos para asegurar la continuidad operativa de tu empresa.</p>
+          <ul class="serv-list">
+            <li>Monitoreo permanente</li>
+            <li>Reposición planificada</li>
+            <li>Disponibilidad garantizada</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · Por qué FACILIA -->
+  <section class="section" id="por-que" style="background:var(--navy-50)">
+    <div class="section-head" style="text-align:center">
+      <h2>¿Por qué FACILIA?</h2>
+    </div>
+    <div class="demo-row" style="justify-content:center">
+      <span class="chip"><span class="check">✓</span>Un único proveedor</span>
+      <span class="chip"><span class="check">✓</span>Procesos estandarizados</span>
+      <span class="chip"><span class="check">✓</span>Personal capacitado</span>
+      <span class="chip"><span class="check">✓</span>Gestión integral</span>
+      <span class="chip"><span class="check">✓</span>Reportes periódicos</span>
+      <span class="chip"><span class="check">✓</span>Respaldo de CORE</span>
+    </div>
+  </section>
+
+  <!-- 8 · CTA final -->
+  <section class="section" id="cta" style="text-align:center">
+    <h2 style="font-size:28px; margin-bottom:16px">
+      Vos te ocupás de tu negocio.<br>
+      <span style="color:var(--orange)">Nosotros garantizamos que tu espacio nunca se detenga.</span>
+    </h2>
+    <p style="opacity:.6; margin-bottom:24px">Cotizá tu servicio en menos de 2 minutos y recibí tu presupuesto al instante.</p>
+    <button class="btn btn-primary btn-lg">Empezar cotización →</button>
+  </section>
+
+</main>
+
+<!-- ============== FOOTER ============== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div style="width:36px;height:36px;border-radius:8px;background:var(--orange);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-family:var(--font-display)">F</div>
+      <div>
+        <div class="logo">FACILIA</div>
+        <div class="sub">Facility Services by CORE</div>
+      </div>
+    </div>
+    <div class="footer-info">
+      <p class="lines">LIMPIEZA · MANTENIMIENTO · CONTINUIDAD OPERATIVA</p>
+      <p class="meta">contacto@facilia.com.uy · www.facilia.com.uy · Montevideo, Uruguay</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © <span id="year"></span> ODDY — On Demand Delivery. Todos los derechos reservados. ·
+    <a href="#">Acceso interno</a>
+  </div>
+</footer>
+
+<!-- ============== MODALES ============== -->
+<div class="modal-backdrop" id="m1" style="display:none" onclick="if(event.target===this)this.style.display='none'">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>Solicitud recibida</h3>
+      <button class="modal-close" onclick="document.getElementById('m1').style.display='none'">×</button>
+    </div>
+    <div class="modal-body">
+      <p style="margin-bottom:16px">Tu cotización fue enviada al equipo comercial. Te contactaremos en menos de 24 hs hábiles.</p>
+      <div class="demo-row" style="justify-content:flex-end">
+        <button class="btn btn-ghost btn-md" onclick="document.getElementById('m1').style.display='none'">Cerrar</button>
+        <button class="btn btn-primary btn-md">Ver cotización</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="m2" style="display:none" onclick="if(event.target===this)this.style.display='none'">
+  <div class="modal">
+    <div class="modal-head">
+      <h3>Nueva solicitud</h3>
+      <button class="modal-close" onclick="document.getElementById('m2').style.display='none'">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="grid" style="gap:14px">
+        <div class="field">
+          <label class="field-label">Cliente</label>
+          <input type="text" placeholder="Razón social">
+        </div>
+        <div class="field">
+          <label class="field-label">Línea</label>
+          <select>
+            <option value="">Seleccionar…</option>
+            <option>Clean</option><option>Care</option><option>Continuity</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="field-label">Detalle</label>
+          <textarea rows="3" placeholder="Describí el requerimiento…"></textarea>
+        </div>
+        <div class="demo-row" style="justify-content:flex-end; margin-top:8px">
+          <button class="btn btn-ghost btn-md" onclick="document.getElementById('m2').style.display='none'">Cancelar</button>
+          <button class="btn btn-primary btn-md">Enviar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="theme-toggle" onclick="toggleTheme()">◐ Tema</button>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+function toggleTheme(){
+  const h = document.documentElement;
+  h.dataset.theme = h.dataset.theme === 'dark' ? 'light' : 'dark';
+}
+</script>
+</body>
+</html>

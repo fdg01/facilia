@@ -1,0 +1,28 @@
+{
+  "name": "core-com-uy",
+  "private": true,
+  "scripts": {
+    "test": "cd apps/web && npx vitest run",
+    "test:watch": "cd apps/web && npx vitest",
+    "test:coverage": "cd apps/web && npx vitest run --coverage",
+    "seed": "npx tsx scripts/seed-admin.ts"
+  },
+  "devDependencies": {
+    "@supabase/ssr": "^0.12.4",
+    "@supabase/supabase-js": "^2.112.3",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^6.1.0",
+    "next": "16.3.1",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "tsx": "^4.19.2",
+    "typescript": "^5",
+    "vitest": "^4.1.11",
+    "zod": "^4.4.3"
+  },
+  "dependencies": {
+    "@react-pdf/renderer": "^4.6.1"
+  }
+}
