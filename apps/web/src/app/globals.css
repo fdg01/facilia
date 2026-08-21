@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+:root {
+  --background: #FBFBFA;
+  --foreground: #0B1220;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Brand palette */
+  --color-navy: #0B2A61;
+  --color-navy-50: #EAF0FB;
+  --color-navy-100: #CBD9F0;
+  --color-navy-300: #5D7FB8;
+  --color-navy-700: #081F49;
+  --color-navy-900: #051531;
+
+  --color-orange: #D97400;
+  --color-orange-50: #FDF3E6;
+  --color-orange-100: #FBE2C0;
+  --color-orange-300: #EFA855;
+  --color-orange-700: #A85900;
+
+  --color-blue: #0169F5;
+  --color-blue-50: #E6F0FE;
+  --color-blue-100: #C0DBFD;
+  --color-blue-300: #5A9EF9;
+  --color-blue-700: #0150BD;
+
+  --color-ink: #0B1220;
+  --color-paper: #FBFBFA;
+
+  --color-red-400: #F87171;
+  --color-red-600: #DC2626;
+
+  /* Typography */
+  --font-sans: "Liberation Sans", Arial, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono);
+  --font-display: "Poppins", system-ui, sans-serif;
+
+  /* Shadows */
+  --shadow-soft: 0 8px 30px -12px rgba(11, 42, 97, 0.25);
+  --shadow-card: 0 2px 12px rgba(11, 42, 97, 0.08);
+
+  /* Radii */
+  --radius-xl: 0.875rem;
+  --radius-2xl: 1.25rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #14161a;
+    --foreground: #e8eaee;
+  }
+}
+
+@layer base {
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
